@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-brand-pink text-brand-brown mt-16 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
+        <div className="grid grid-cols-1 gap-8 items-center text-center md:text-left">
           <div>
             <h3 className="font-serif text-xl font-bold mb-2">La Doce Vida Confeitaria</h3>
             <p>R. Heriberto B. de Cecco, 2431 - Toledo - PR</p>
