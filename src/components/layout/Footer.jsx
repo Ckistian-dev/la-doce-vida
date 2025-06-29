@@ -26,11 +26,11 @@ const Footer = () => {
         </div>
 
         {/* --- Layout para Desktop (Visível apenas em telas médias e grandes) --- */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-12 text-center md:text-left">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
           {/* Coluna 1: Logo e Slogan */}
-          <div className="flex flex-col items-center md:items-start">
-            <div>
-              <img src="https://i.ibb.co/YTfpTSSd/3917ab0e-60fd-4754-a5b3-11859f92c129.png" alt="La Doce Vida Logo" className="h-16 w-auto" />
+          <div className="flex flex-col items-center text-center">
+            <div className='items-center'>
+              <img src="https://i.ibb.co/YTfpTSSd/3917ab0e-60fd-4754-a5b3-11859f92c129.png" alt="La Doce Vida Logo" className="h-16 w-auto mb-4" />
             </div>
             <p className="text-sm">Onde cada doce conta uma história de sabor e paixão.</p>
           </div>
@@ -59,7 +59,7 @@ const Footer = () => {
           {/* Coluna 4: Redes Sociais */}
           <div>
             <h3 className="font-serif text-lg font-bold mb-4 tracking-wider">Siga-nos</h3>
-            <div className="flex justify-center md:justify-start space-x-5">
+            <div className="flex justify-center space-x-5">
               <a href="https://www.instagram.com/la.docevidaa/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-300">
                 <Instagram size={24} />
               </a>

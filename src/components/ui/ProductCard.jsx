@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../../context/CartContext';
-import { Check } from 'lucide-react'; // Importando o ícone de check
+import { Check } from 'lucide-react';
 
-const ProductCard = ({ product, onImageClick }) => {
+// CORREÇÃO: Adicionamos um valor padrão para 'onProductSelect' e 'onImageClick'
+// para evitar erros caso um componente pai não passe essas funções.
+const ProductCard = ({ product, onImageClick = () => {}, onProductSelect = () => {} }) => {
   const { addToCart } = useCart();
   const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCart = () => {
-    // Se já foi adicionado, não faz nada para evitar múltiplos cliques rápidos
     if (isAdded) return;
-
-    addToCart(product);
-    setIsAdded(true);
-    // Reseta o estado do botão após 2 segundos
-    setTimeout(() => {
-      setIsAdded(false);
-    }, 2000);
+    
+    // Se o produto for simples, adiciona direto e mostra feedback
+    if (product.type === 'simple') {
+      addToCart(product);
+      setIsAdded(true);
+      setTimeout(() => {
+        setIsAdded(false);
+      }, 2000);
+    } else {
+      // Se tiver opções, chama a função para abrir o modal
+      onProductSelect(product);
+    }
   };
 
   return (
@@ -41,18 +47,22 @@ const ProductCard = ({ product, onImageClick }) => {
         <h3 className="text-xl font-serif text-brand-brown mb-2">{product.name}</h3>
         <p className="text-gray-600 text-sm mb-4 flex-grow font-sans">{product.description}</p>
         <div className="flex justify-between items-center mt-auto">
-          <span className="text-2xl font-bold text-brand-pink font-serif">R${product.price.toFixed(2)}</span>
+          <span className="text-2xl font-bold text-brand-pink font-serif">
+            {product.type === 'by_weight' 
+              ? `R$ ${product.pricePerKg.toFixed(2)}/kg` 
+              : `R$ ${product.price.toFixed(2)}`
+            }
+          </span>
           
-          {/* Botão de Adicionar com Feedback Visual */}
           <button
             onClick={handleAddToCart}
-            disabled={isAdded} // Desabilita o botão brevemente para evitar spam
+            disabled={isAdded}
             className={`
-              relative flex items-center justify-center w-[130px] h-[40px]
+              relative flex items-center justify-center min-w-[130px] h-[40px]
               text-white px-5 py-2 rounded-full 
               transform transition-colors duration-300 
               group-hover:scale-105
-              ${isAdded ? 'bg-brand-brown' : 'bg-brand-pink'}
+              ${isAdded ? 'bg-green-500' : 'bg-brand-brown group-hover:bg-brand-pink'}
             `}
           >
             <AnimatePresence mode="wait">
@@ -76,7 +86,7 @@ const ProductCard = ({ product, onImageClick }) => {
                   transition={{ ease: 'easeOut', duration: 0.3 }}
                   className="absolute inset-0 flex items-center justify-center"
                 >
-                  Adicionar
+                  {product.type === 'simple' ? 'Adicionar' : 'Escolher'}
                 </motion.span>
               )}
             </AnimatePresence>

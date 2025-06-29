@@ -1,18 +1,24 @@
 import React, { createContext, useReducer, useEffect, useContext } from 'react';
 
-const CartContext = createContext();
+// O contexto é exportado para ser usado em outros arquivos.
+export const CartContext = createContext();
 
 const cartReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TO_CART': {
-      const existingItemIndex = state.findIndex(item => item.id === action.payload.id);
-      if (existingItemIndex > -1) {
-        return state.map(item =>
-          item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } else {
-        return [...state, { ...action.payload, quantity: 1 }];
+      // Lógica atualizada para lidar com diferentes tipos de produtos.
+      // Se o produto for 'simple', verificamos se ele já existe para incrementar a quantidade.
+      if (action.payload.type === 'simple') {
+          const existingItemIndex = state.findIndex(item => item.id === action.payload.id);
+          if (existingItemIndex > -1) {
+            return state.map(item =>
+              item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item
+            );
+          }
       }
+      // Para produtos customizados (com variações ou por peso), sempre adicionamos como um novo item no carrinho,
+      // pois eles podem ter nomes e preços diferentes.
+      return [...state, { ...action.payload, quantity: 1 }];
     }
     case 'REMOVE_FROM_CART': {
       return state.filter(item => item.id !== action.payload.id);
@@ -66,4 +72,5 @@ export const CartProvider = ({ children }) => {
   );
 };
 
+// Mantivemos o hook 'useCart' aqui, pois é uma boa prática e estava no seu código.
 export const useCart = () => useContext(CartContext);

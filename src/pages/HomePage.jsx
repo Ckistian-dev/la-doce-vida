@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import products from '../data/products.json';
 import ProductCard from '../components/ui/ProductCard';
-import ImageModal from '../components/ui/ImageModal'; // Importamos o modal aqui também
+import ImageModal from '../components/ui/ImageModal';
+import ProductOptionsModal from '../components/ui/ProductOptionsModal';
+import { useCart } from '../context/CartContext';
 
 // --- Imagens para o Carrossel ---
 const heroImages = [
@@ -12,9 +14,10 @@ const heroImages = [
 ];
 
 const HomePage = ({ setPage }) => {
+  const { addToCart } = useCart();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  // --- CORREÇÃO: Adicionamos o estado para controlar o modal de imagem ---
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedProductForOptions, setSelectedProductForOptions] = useState(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -24,6 +27,11 @@ const HomePage = ({ setPage }) => {
     }, 5000);
 
     return () => clearInterval(timer);
+  }, []);
+
+  // Efeito para rolar para o topo da página ao carregar
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -52,7 +60,7 @@ const HomePage = ({ setPage }) => {
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}
         >
           <h1 className="text-5xl md:text-7xl font-serif font-extrabold drop-shadow-lg" style={{color: '#FFF'}}>La Doce Vida</h1>
-          <p className="text-xl md:text-2xl mt-4 max-w-2xl mx-auto drop-shadow-md" style={{color: '#FFF'}}>Onde cada doce conta uma história de sabor e paixão.</p>
+          <p className="text-xl md:text-2xl mt-4 max-w-2xl mx-auto drop-shadow-md" style={{color: '#FFF'}}>Aqui você encontra bolos caseiros, tortas fresquinhas e outras gostosuras feitas com amor.</p>
           <motion.button
             onClick={() => setPage('menu')}
             whileHover={{ scale: 1.05 }}
@@ -72,17 +80,35 @@ const HomePage = ({ setPage }) => {
                   <ProductCard 
                     key={product.id} 
                     product={product} 
-                    // --- CORREÇÃO: Passamos a função onImageClick aqui ---
                     onImageClick={setSelectedImage}
+                    onProductSelect={setSelectedProductForOptions}
                   />
               ))}
           </div>
+
+          {/* --- BOTÃO ADICIONADO --- */}
+          <div className="text-center mt-16">
+            <motion.button
+              onClick={() => setPage('menu')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-brand-brown text-white font-bold py-3 px-10 rounded-full text-lg shadow-lg hover:bg-brand-pink transition-colors duration-300"
+            >
+              Ver todos os produtos
+            </motion.button>
+          </div>
       </div>
 
-      {/* --- CORREÇÃO: Renderizamos o modal aqui também --- */}
       <ImageModal 
         imageUrl={selectedImage} 
         onClose={() => setSelectedImage(null)}
+      />
+
+      <ProductOptionsModal
+        isOpen={!!selectedProductForOptions}
+        product={selectedProductForOptions}
+        onClose={() => setSelectedProductForOptions(null)}
+        onAddToCart={addToCart}
       />
     </>
   );

@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import products from '../data/products.json';
 import ProductCard from '../components/ui/ProductCard';
-import ImageModal from '../components/ui/ImageModal'; // Importe o novo componente
+import ImageModal from '../components/ui/ImageModal';
+import ProductOptionsModal from '../components/ui/ProductOptionsModal';
+import { useCart } from '../context/CartContext';
 
 const MenuPage = () => {
-  // Estado para controlar a URL da imagem que está no modal
+  const { addToCart } = useCart();
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedProductForOptions, setSelectedProductForOptions] = useState(null);
+
+  // Efeito para rolar para o topo sempre que a página carregar
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -24,18 +32,24 @@ const MenuPage = () => {
             <motion.div key={product.id} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
               <ProductCard
                 product={product}
-                // Passa a função para o card para que ele possa definir a imagem selecionada
                 onImageClick={setSelectedImage}
+                onProductSelect={setSelectedProductForOptions}
               />
             </motion.div>
           ))}
         </motion.div>
       </div>
       
-      {/* Renderiza o modal. Ele só será visível quando 'selectedImage' tiver uma URL. */}
       <ImageModal 
         imageUrl={selectedImage} 
-        onClose={() => setSelectedImage(null)} // Define a função para fechar o modal
+        onClose={() => setSelectedImage(null)}
+      />
+
+      <ProductOptionsModal
+        isOpen={!!selectedProductForOptions}
+        product={selectedProductForOptions}
+        onClose={() => setSelectedProductForOptions(null)}
+        onAddToCart={addToCart}
       />
     </>
   );

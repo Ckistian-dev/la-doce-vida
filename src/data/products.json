@@ -1,21 +1,58 @@
 [
   {
     "id": 1,
-    "name": "Cupcake Red Velvet",
-    "description": "Massa aveludada com um toque de cacau e cobertura de cream cheese.",
-    "price": 12.50,
-    "imageUrl": "https://s2-receitas.glbimg.com/EGfqP3XfM9ZJdy41TZ5lmt1PuFQ=/0x0:1200x675/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2024/O/o/065AkCSuqTkBzrKGGg5w/cupcake-rosa.jpg",
+    "name": "Bolo de pote",
+    "description": "Nosso bolo de pote é composto por uma massa fina e úmida. Com recheios fresquinhos e perfeita para qualquer hora do dia.",
+    "price": 13.00,
+    "imageUrl": "https://conteudo.imguol.com.br/c/entretenimento/95/2020/02/14/bolo-de-pote-de-sensacao-de-morango-de-elaine-ferreira-do-site-e-youtube-cakepedia-1581691057556_v2_4x3.jpg",
     "category": "Cupcakes",
-    "isFeatured": true
+    "isFeatured": true,
+    "type": "variations",
+    "maxSelections": 2,
+    "options": [
+      {
+        "id": "chocolate",
+        "label": "Chocolate"
+      },
+      {
+        "id": "ninho",
+        "label": "Ninho"
+      },
+      {
+        "id": "creme_real",
+        "label": "Creme Real"
+      },
+      {
+        "id": "morango",
+        "label": "Morango"
+      },
+      {
+        "id": "uva",
+        "label": "Uva"
+      },
+      {
+        "id": "pessego",
+        "label": "Pessego"
+      },
+      {
+        "id": "abacaxi",
+        "label": "Abacaxi"
+      },
+      {
+        "id": "bis",
+        "label": "Bis"
+      }
+    ]
   },
   {
     "id": 2,
-    "name": "Bolo de Chocolate Intenso",
-    "description": "Fatias generosas de bolo de chocolate com ganache cremosa e rica.",
+    "name": "Bolo KG",
+    "description": "Feito com ingredientes selecionados e fresquinhos, nosso bolo é preparado artesanalmente. Cada camada é cuidadosamente recheada com cremes suaves e saborosos.",
     "price": 18.00,
     "imageUrl": "https://placehold.co/400x400/5D4037/FDF8F5?text=Bolo",
     "category": "Bolos",
-    "isFeatured": true
+    "isFeatured": false,
+    "type": "simple"
   },
   {
     "id": 3,
@@ -24,7 +61,8 @@
     "price": 5.00,
     "imageUrl": "https://placehold.co/400x400/D4AF37/5D4037?text=Macaron",
     "category": "Macarons",
-    "isFeatured": false
+    "isFeatured": false,
+    "type": "simple"
   },
   {
     "id": 4,
@@ -33,24 +71,48 @@
     "price": 15.00,
     "imageUrl": "https://placehold.co/400x400/FDF8F5/5D4037?text=Torta",
     "category": "Tortas",
-    "isFeatured": true
+    "isFeatured": true,
+    "type": "simple"
   },
-    {
+  {
     "id": 5,
-    "name": "Éclair de Baunilha",
-    "description": "Massa choux clássica recheada com creme de baunilha e coberta com fondant.",
-    "price": 9.50,
-    "imageUrl": "https://placehold.co/400x400/E6C0C0/5D4037?text=Éclair",
-    "category": "Doces Franceses",
-    "isFeatured": false
+    "name": "Bolo de Pote",
+    "description": "Escolha seus sabores favoritos para uma sobremesa perfeita e individual.",
+    "price": 15.00,
+    "imageUrl": "https://placehold.co/400x400/E6C0C0/5D4037?text=Bolo+de+Pote",
+    "category": "Sobremesas",
+    "isFeatured": true,
+    "type": "variations",
+    "maxSelections": 2,
+    "options": [
+      {
+        "id": "ninho_nutella",
+        "label": "Ninho com Nutella"
+      },
+      {
+        "id": "morango_creme",
+        "label": "Morango com Creme Belga"
+      },
+      {
+        "id": "brigadeiro",
+        "label": "Brigadeiro Tradicional"
+      },
+      {
+        "id": "maracuja",
+        "label": "Mousse de Maracujá"
+      }
+    ]
   },
   {
     "id": 6,
-    "name": "Caixa de Brigadeiros Gourmet",
-    "description": "Seleção de 6 brigadeiros: tradicional, pistache e crème brûlée.",
-    "price": 25.00,
-    "imageUrl": "https://placehold.co/400x400/5D4037/FDF8F5?text=Brigadeiros",
-    "category": "Doces Brasileiros",
-    "isFeatured": true
+    "name": "Bolo por Quilo",
+    "description": "Monte o bolo dos seus sonhos! Escolha o peso e nós preparamos para você.",
+    "imageUrl": "https://placehold.co/400x400/5D4037/FDF8F5?text=Bolo+por+Kg",
+    "category": "Bolos",
+    "isFeatured": false,
+    "type": "by_weight",
+    "pricePerKg": 50,
+    "minWeight": 500,
+    "maxWeight": 3000
   }
 ]

@@ -61,7 +61,7 @@ const Navbar = ({ setPage }) => {
   
   return (
     // O header é 'isolate' para criar um novo contexto de empilhamento para o z-index
-    <header className="bg-brand-cream/80 backdrop-blur-sm sticky top-0 z-30 shadow-sm font-sans isolate">
+    <header className="bg-brand-cream/80 backdrop-blur-sm sticky top-0 z-30 font-sans isolate">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         {/* Logo */}
         <button onClick={() => setPage('home')} className="flex items-center space-x-2 ml-2">
@@ -117,7 +117,7 @@ const Navbar = ({ setPage }) => {
               animate="visible"
               exit="hidden"
               // O menu agora é posicionado de forma absoluta abaixo do header
-              className="md:hidden absolute top-full left-0 w-full bg-brand-cream/95 backdrop-blur-md shadow-lg overflow-hidden"
+              className="md:hidden absolute top-full left-0 w-full bg-brand-cream/80 backdrop-blur-sm overflow-hidden isolate"
             >
               {/* Lista de links, alinhada à direita */}
               <div className="flex flex-col items-end py-4 px-6">
