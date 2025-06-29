@@ -60,6 +60,8 @@ const CheckoutForm = () => {
   const [location, setLocation] = useState('');
   const [pickupPoint, setPickupPoint] = useState('Talatto');
   const [paymentMethod, setPaymentMethod] = useState('Pix');
+  // --- Adicionado estado para a observação ---
+  const [observation, setObservation] = useState('');
   
   const [status, setStatus] = useState({ message: '', type: '' });
 
@@ -109,18 +111,9 @@ const CheckoutForm = () => {
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzlBdURxSylsnjA9o7u0xzsrNsvR02713GO75T88fvp4D4rjkuWTAVG6wcHUnnoCOdrhg/exec';
     
     const data = new FormData();
-
-    // --- CORREÇÃO: Formata a data e hora de forma explícita ---
+    
     const now = new Date();
-    const formattedTimestamp = now.toLocaleString('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      timeZone: 'America/Sao_Paulo'
-    });
+    const formattedTimestamp = now.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
     
     data.append('Timestamp', formattedTimestamp);
     data.append('CustomerName', formData.name);
@@ -129,6 +122,7 @@ const CheckoutForm = () => {
     data.append('TotalAmount', totalAmount.toFixed(2));
     data.append('DeliveryType', deliveryType);
     data.append('PaymentMethod', paymentMethod);
+    data.append('Observation', observation); // --- Enviando a observação ---
     
     if (deliveryType === 'delivery') {
       data.append('Address', location);
@@ -143,6 +137,7 @@ const CheckoutForm = () => {
         clearCart();
         setFormData({ name: '', phone: '' });
         setLocation('');
+        setObservation(''); // --- Limpando a observação após o envio ---
       } else {
          throw new Error('Falha ao enviar para a planilha.');
       }
@@ -198,6 +193,22 @@ const CheckoutForm = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* --- Campo de Observação Adicionado --- */}
+      <div>
+        <label htmlFor="observation" className="block text-sm font-medium text-gray-700">
+          Observações (opcional):
+        </label>
+        <textarea
+          id="observation"
+          name="observation"
+          rows="3"
+          value={observation}
+          onChange={(e) => setObservation(e.target.value)}
+          placeholder="Ex: alergias, pedido para presente, etc."
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brand-pink focus:ring-brand-pink sm:text-sm placeholder:text-gray-400"
+        />
+      </div>
 
       {/* Resumo do Pedido */}
       <div className="border-t pt-4 space-y-2">

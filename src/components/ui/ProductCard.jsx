@@ -1,29 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../../context/CartContext';
 import { Check } from 'lucide-react';
 
-// CORREÇÃO: Adicionamos um valor padrão para 'onProductSelect' e 'onImageClick'
-// para evitar erros caso um componente pai não passe essas funções.
-const ProductCard = ({ product, onImageClick = () => {}, onProductSelect = () => {} }) => {
+const ProductCard = ({ product, onImageClick, onProductSelect = () => {} }) => {
   const { addToCart } = useCart();
   const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCart = () => {
     if (isAdded) return;
     
-    // Se o produto for simples, adiciona direto e mostra feedback
     if (product.type === 'simple') {
       addToCart(product);
       setIsAdded(true);
-      setTimeout(() => {
-        setIsAdded(false);
-      }, 2000);
+      setTimeout(() => setIsAdded(false), 2000);
     } else {
-      // Se tiver opções, chama a função para abrir o modal
       onProductSelect(product);
     }
   };
+
+  const priceDisplay = useMemo(() => {
+    // Para produtos por peso com opções de sabor
+    if (product.type === 'by_weight' && product.options?.length > 0) {
+      const minPrice = Math.min(...product.options.map(opt => opt.pricePerKg));
+      return `A partir de R$ ${minPrice.toFixed(2)}/kg`;
+    }
+    // --- CORREÇÃO: Adicionada verificação de segurança ---
+    // Para produtos com preço fixo, primeiro verificamos se a propriedade 'price' existe e é um número.
+    if (typeof product.price === 'number') {
+      return `R$ ${product.price.toFixed(2)}`;
+    }
+    // Se nenhum dos casos acima for atendido, exibe uma mensagem de fallback.
+    return 'Preço sob consulta';
+  }, [product]);
 
   return (
     <motion.div
@@ -44,14 +53,11 @@ const ProductCard = ({ product, onImageClick = () => {}, onProductSelect = () =>
         />
       </div>
       <div className="p-5 flex flex-col flex-grow">
-        <h3 className="text-xl font-serif font-extrabold text-brand-brown mb-2">{product.name}</h3>
+        <h3 className="text-xl font-serif text-brand-brown mb-2">{product.name}</h3>
         <p className="text-gray-600 text-sm mb-4 flex-grow font-sans">{product.description}</p>
         <div className="flex justify-between items-center mt-auto">
-          <span className="text-2xl font-bold text-brand-pink font-serif">
-            {product.type === 'by_weight' 
-              ? `R$ ${product.pricePerKg.toFixed(2)}/kg` 
-              : `R$ ${product.price.toFixed(2)}`
-            }
+          <span className="text-lg font-bold text-brand-pink font-serif">
+            {priceDisplay}
           </span>
           
           <button
