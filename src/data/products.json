@@ -11,8 +11,8 @@
     "maxSelections": 2,
     "options": [
       {
-        "id": "chocolate",
-        "label": "Chocolate"
+        "id": "Brigadeiro",
+        "label": "Brigadeiro"
       },
       {
         "id": "ninho",
@@ -46,28 +46,170 @@
   },
   {
     "id": 2,
+    "name": "Bolo de pote 600g",
+    "description": "Nosso bolo de pote é composto por uma massa fina e úmida. Com recheios fresquinhos e perfeita para qualquer hora do dia.",
+    "price": 28.00,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2ltIXlBIBMzgvlEqNr15ug0gDoPBHnrObMQ&s",
+    "category": "Bolos",
+    "isFeatured": false,
+    "type": "variations",
+    "maxSelections": 2,
+    "options": [
+      {
+        "id": "Brigadeiro",
+        "label": "Brigadeiro"
+      },
+      {
+        "id": "ninho",
+        "label": "Ninho"
+      },
+      {
+        "id": "creme_real",
+        "label": "Creme Real"
+      },
+      {
+        "id": "morango",
+        "label": "Morango"
+      },
+      {
+        "id": "uva",
+        "label": "Uva"
+      },
+      {
+        "id": "pessego",
+        "label": "Pêssego"
+      },
+      {
+        "id": "abacaxi",
+        "label": "Abacaxi"
+      },
+      {
+        "id": "bis",
+        "label": "Bis"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Copo Surpresa",
+    "description": "Montado em camadas, o copo surpresa começa com frutas frescas no fundo, trazendo leveza e frescor.",
+    "price": 15.00,
+    "imageUrl": "https://i.ytimg.com/vi/1ov4xNE7IM0/maxresdefault.jpg",
+    "category": "Bolos",
+    "isFeatured": true,
+    "type": "variations",
+    "maxSelections": 2,
+    "options": [
+      {
+        "id": "Brigadeiro",
+        "label": "Brigadeiro"
+      },
+      {
+        "id": "ninho",
+        "label": "Ninho"
+      },
+      {
+        "id": "creme_real",
+        "label": "Creme Real"
+      },
+      {
+        "id": "morango",
+        "label": "Morango"
+      },
+      {
+        "id": "uva",
+        "label": "Uva"
+      },
+      {
+        "id": "pessego",
+        "label": "Pêssego"
+      },
+      {
+        "id": "abacaxi",
+        "label": "Abacaxi"
+      },
+      {
+        "id": "bis",
+        "label": "Bis"
+      }
+    ]
+  },
+  {
+    "id": 4,
     "name": "Bolo KG",
     "description": "Feito com ingredientes selecionados e fresquinhos, nosso bolo é preparado artesanalmente. Cada camada é cuidadosamente recheada com cremes suaves e saborosos.",
-    "price": 18.00,
-    "imageUrl": "https://placehold.co/400x400/5D4037/FDF8F5?text=Bolo",
+    "imageUrl": "https://bolosparavender.com/wp-content/uploads/2024/08/Cobertura-rosa-para-bolo.jpg",
     "category": "Bolos",
     "isFeatured": true,
     "type": "by_weight",
     "pricePerKg": 50,
     "minWeight": 500,
     "maxWeight": 3000
-
-
   },
   {
-    "id": 3,
-    "name": "Macaron de Pistache",
-    "description": "Doce francês delicado com recheio cremoso e sabor marcante de pistache.",
-    "price": 5.00,
-    "imageUrl": "https://placehold.co/400x400/D4AF37/5D4037?text=Macaron",
-    "category": "Macarons",
+    "id": 5,
+    "name": "Bolo de Cenoura",
+    "description": "O bolo de cenoura é preparado com massa leve e fofinha, batida até atingir a textura perfeita. Depois de assado, ganha uma generosa cobertura que derrete ao contato, formando uma casquinha deliciosa",
+    "price": 25.00,
+    "imageUrl": "https://www.sidul.pt/wp-content/uploads/2023/03/1680256656_401_bolo_de_cenouras_receita-2560x1366.jpg",
+    "category": "Bolos",
+    "isFeatured": true,
+    "type": "variations",
+    "maxSelections": 1,
+    "options": [
+      {
+        "id": "brigadeiro",
+        "label": "Brigadeiro"
+      },
+      {
+        "id": "ninho",
+        "label": "Ninho"
+      },
+      {
+        "id": "creme_real",
+        "label": "Creme Real"
+      },
+      {
+        "id": "4_leites",
+        "label": "4 Leites"
+      },
+      {
+        "id": "sem_cobertura",
+        "label": "Sem Cobertura"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Torta Salgada",
+    "description": "Preparado em camadas macias e bem recheadas, o bolo salgado é montado com cuidado para garantir sabor e textura equilibrados.",
+    "imageUrl": "https://cms.cooknenjoy.com/wp-content/uploads/2023/03/Torta-Batata-Atum-01-1200x901.jpg",
+    "category": "Torta",
     "isFeatured": false,
-    "type": "simple"
+    "type": "by_weight",
+    "pricePerKg": 50,
+    "minWeight": 500,
+    "maxWeight": 3000
+  },
+  {
+    "id": 7,
+    "name": "Pedaço Torta Salgada ",
+    "description": "Preparado em camadas macias e bem recheadas, o bolo salgado é montado com cuidado para garantir sabor e textura equilibrados.",
+    "price": 10.00,
+    "imageUrl": "https://www.minhareceita.com.br/app/uploads/2024/06/torta-salgada-frango-liquidificador.jpg",
+    "category": "Torta",
+    "isFeatured": true,
+    "type": "variations",
+    "maxSelections": 1,
+    "options": [
+      {
+        "id": "carne",
+        "label": "Carne"
+      },
+      {
+        "id": "frango",
+        "label": "Frango"
+      }
+    ]
   }
 ]
-
