@@ -207,7 +207,7 @@
     "price": 25.00,
     "imageUrl": "https://cdn.casaeculinaria.com/wp-content/uploads/2023/05/23140523/Bolo-de-milho-simples.webp",
     "category": "Bolos",
-    "isFeatured": true,
+    "isFeatured": false,
     "type": "variations",
     "maxSelections": 1,
     "options": [
@@ -240,7 +240,7 @@
     "price": 25.00,
     "imageUrl": "https://receitatodahora.com.br/wp-content/uploads/2022/12/bolo-de-laranja-de-liquidificador-receita-toda-hora.jpg",
     "category": "Bolos",
-    "isFeatured": true,
+    "isFeatured": false,
     "type": "variations",
     "maxSelections": 1,
     "options": [
@@ -273,7 +273,7 @@
     "price": 25.00,
     "imageUrl": "https://receitatodahora.com.br/wp-content/uploads/2024/08/bolo-de-limao-2-2108.jpg",
     "category": "Bolos",
-    "isFeatured": true,
+    "isFeatured": false,
     "type": "variations",
     "maxSelections": 1,
     "options": [
