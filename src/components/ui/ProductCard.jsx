@@ -44,7 +44,7 @@ const ProductCard = ({ product, onImageClick = () => {}, onProductSelect = () =>
         />
       </div>
       <div className="p-5 flex flex-col flex-grow">
-        <h3 className="text-xl font-serif text-brand-brown mb-2">{product.name}</h3>
+        <h3 className="text-xl font-serif font-extrabold text-brand-brown mb-2">{product.name}</h3>
         <p className="text-gray-600 text-sm mb-4 flex-grow font-sans">{product.description}</p>
         <div className="flex justify-between items-center mt-auto">
           <span className="text-2xl font-bold text-brand-pink font-serif">
