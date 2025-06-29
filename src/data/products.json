@@ -5,7 +5,7 @@
     "description": "Nosso bolo de pote é composto por uma massa fina e úmida. Com recheios fresquinhos e perfeita para qualquer hora do dia.",
     "price": 13.00,
     "imageUrl": "https://conteudo.imguol.com.br/c/entretenimento/95/2020/02/14/bolo-de-pote-de-sensacao-de-morango-de-elaine-ferreira-do-site-e-youtube-cakepedia-1581691057556_v2_4x3.jpg",
-    "category": "Cupcakes",
+    "category": "Bolos",
     "isFeatured": true,
     "type": "variations",
     "maxSelections": 2,
@@ -32,7 +32,7 @@
       },
       {
         "id": "pessego",
-        "label": "Pessego"
+        "label": "Pêssego"
       },
       {
         "id": "abacaxi",
@@ -51,8 +51,13 @@
     "price": 18.00,
     "imageUrl": "https://placehold.co/400x400/5D4037/FDF8F5?text=Bolo",
     "category": "Bolos",
-    "isFeatured": false,
-    "type": "simple"
+    "isFeatured": true,
+    "type": "by_weight",
+    "pricePerKg": 50,
+    "minWeight": 500,
+    "maxWeight": 3000
+
+
   },
   {
     "id": 3,
@@ -63,56 +68,6 @@
     "category": "Macarons",
     "isFeatured": false,
     "type": "simple"
-  },
-  {
-    "id": 4,
-    "name": "Torta de Limão Merengada",
-    "description": "Base crocante, recheio de limão azedinho e um topo de merengue suíço.",
-    "price": 15.00,
-    "imageUrl": "https://placehold.co/400x400/FDF8F5/5D4037?text=Torta",
-    "category": "Tortas",
-    "isFeatured": true,
-    "type": "simple"
-  },
-  {
-    "id": 5,
-    "name": "Bolo de Pote",
-    "description": "Escolha seus sabores favoritos para uma sobremesa perfeita e individual.",
-    "price": 15.00,
-    "imageUrl": "https://placehold.co/400x400/E6C0C0/5D4037?text=Bolo+de+Pote",
-    "category": "Sobremesas",
-    "isFeatured": true,
-    "type": "variations",
-    "maxSelections": 2,
-    "options": [
-      {
-        "id": "ninho_nutella",
-        "label": "Ninho com Nutella"
-      },
-      {
-        "id": "morango_creme",
-        "label": "Morango com Creme Belga"
-      },
-      {
-        "id": "brigadeiro",
-        "label": "Brigadeiro Tradicional"
-      },
-      {
-        "id": "maracuja",
-        "label": "Mousse de Maracujá"
-      }
-    ]
-  },
-  {
-    "id": 6,
-    "name": "Bolo por Quilo",
-    "description": "Monte o bolo dos seus sonhos! Escolha o peso e nós preparamos para você.",
-    "imageUrl": "https://placehold.co/400x400/5D4037/FDF8F5?text=Bolo+por+Kg",
-    "category": "Bolos",
-    "isFeatured": false,
-    "type": "by_weight",
-    "pricePerKg": 50,
-    "minWeight": 500,
-    "maxWeight": 3000
   }
 ]
+
