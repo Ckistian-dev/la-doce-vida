@@ -56,9 +56,9 @@ const CustomSelect = ({ options, selected, onSelect, placeholder, label }) => {
 const CheckoutForm = () => {
   const { cart, clearCart } = useCart();
   const [formData, setFormData] = useState({ name: '', phone: '' });
-  const [deliveryType, setDeliveryType] = useState('delivery');
+  const [deliveryType, setDeliveryType] = useState('pickup');
   const [location, setLocation] = useState('');
-  const [pickupPoint, setPickupPoint] = useState('Talatto');
+  const [pickupPoint, setPickupPoint] = useState('NRE');
   const [paymentMethod, setPaymentMethod] = useState('Pix');
   // --- Adicionado estado para a observação ---
   const [observation, setObservation] = useState('');
