@@ -71,6 +71,7 @@ const CheckoutForm = () => {
     { value: 'pickup', label: 'Retirar no local' },
   ];
   const pickupLocations = [
+    { value: 'NRE', label: 'NRE - R. Nossa Sra. do Rocio, 1287' },
     { value: 'Talatto', label: 'Talatto - R. Alberto Dalcanale, 3103' },
     { value: 'Gruber', label: 'Gruber - R. Santos Dumont, 2005' },
     { value: 'Prati', label: 'Prati - R. Mitsugoro Tanaka, 145' },
