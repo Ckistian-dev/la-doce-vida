@@ -336,7 +336,7 @@
     "id": 10,
     "name": "Torta Salgada",
     "description": "Preparado em camadas macias e bem recheadas, o bolo salgado é montado com cuidado para garantir sabor e textura equilibrados.",
-    "imageUrl": "https://cms.cooknenjoy.com/wp-content/uploads/2023/03/Torta-Batata-Atum-01-1200x901.jpg",
+    "imageUrl": "https://receitacerta.blog.br/wp-content/uploads/2025/06/torta-salgada-completa-768x512.webp",
     "category": "Torta",
     "isFeatured": false,
     "type": "by_weight",
@@ -375,5 +375,15 @@
         "label": "Frango com Catupiry"
       }
     ]
+  },
+    {
+    "id": 12,
+    "name": "Pudim",
+    "description": "Delicioso e com textura aveludada, o pudim é preparado com carinho e coberto por uma calda dourada que derrete na boca. Adoça qualquer momento.",
+    "price": 30.00,
+    "imageUrl": "https://feedtv.news/wp-content/uploads/2025/07/Pudim-Foto-Reproducao-Redes-Sociais.jpg",
+    "category": "Pudim",
+    "isFeatured": true,
+    "type": "simple"
   }
 ]
