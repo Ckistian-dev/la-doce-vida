@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import products from '../data/products.json';
+import useProducts from '../hooks/useProducts';
 import ProductCard from '../components/ui/ProductCard';
+import ProductCardSkeleton from '../components/ui/ProductCardSkeleton'; // <-- 1. IMPORTE O SKELETON
 import ImageModal from '../components/ui/ImageModal';
 import ProductOptionsModal from '../components/ui/ProductOptionsModal';
 import { useCart } from '../context/CartContext';
 
-// --- Imagens para o Carrossel ---
 const heroImages = [
   'https://delicious.com.br/wp-content/uploads/2020/10/DSC_0183.jpg',
   'https://ocirurgiaovascular.com.br/wp/wp-content/uploads/2020/08/receitas-doces-saudaveis-dr-daniel-benitti-cirurgiao-vascular-sao-paulo-campinas.jpg',
@@ -15,6 +15,8 @@ const heroImages = [
 
 const HomePage = ({ setPage }) => {
   const { addToCart } = useCart();
+  const { products, loading, error } = useProducts();
+  
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedProductForOptions, setSelectedProductForOptions] = useState(null);
@@ -25,20 +27,21 @@ const HomePage = ({ setPage }) => {
         prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
       );
     }, 5000);
-
     return () => clearInterval(timer);
   }, []);
 
-  // Efeito para rolar para o topo da página ao carregar
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // --- 2. REMOVEMOS A VERIFICAÇÃO DE 'loading' E 'error' DAQUI ---
+  // A página inteira será renderizada, e a lógica de carregamento
+  // ficará apenas na seção de produtos.
+
   return (
     <>
-      {/* Seção Hero com Carrossel de Fundo */}
+      {/* Seção Hero com Carrossel de Fundo (SEMPRE VISÍVEL) */}
       <div className="relative h-[calc(100vh-80px)] min-h-[600px] flex items-center justify-center text-center overflow-hidden">
-        
         <AnimatePresence>
           <motion.div
             key={currentImageIndex}
@@ -50,9 +53,7 @@ const HomePage = ({ setPage }) => {
             style={{ backgroundImage: `url('${heroImages[currentImageIndex]}')` }}
           />
         </AnimatePresence>
-        
         <div className="absolute inset-0 bg-black/40"></div>
-        
         <motion.div
           className="relative z-10 text-white px-4"
           initial={{ opacity: 0, y: 20 }}
@@ -75,18 +76,32 @@ const HomePage = ({ setPage }) => {
       {/* Seção de Produtos em Destaque */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <h2 className="text-4xl font-serif text-center text-brand-brown mb-12">Nossos Queridinhos</h2>
+          
+          {/* --- 3. NOVA LÓGICA DE RENDERIZAÇÃO CONDICIONAL AQUI --- */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {products.filter(p => p.isFeatured).map(product => (
+            {loading ? (
+              // Se estiver carregando, mostra 3 skeletons
+              <>
+                <ProductCardSkeleton />
+                <ProductCardSkeleton />
+                <ProductCardSkeleton />
+              </>
+            ) : error ? (
+              // Se der erro, mostra uma mensagem de erro no local
+              <p className="col-span-3 text-center text-red-600">Erro ao carregar os produtos. Tente novamente.</p>
+            ) : (
+              // Se carregou com sucesso, mostra os produtos
+              products.filter(p => p.isFeatured).map(product => (
                   <ProductCard 
                     key={product.id} 
                     product={product} 
                     onImageClick={setSelectedImage}
                     onProductSelect={setSelectedProductForOptions}
                   />
-              ))}
+              ))
+            )}
           </div>
 
-          {/* --- BOTÃO ADICIONADO --- */}
           <div className="text-center mt-16">
             <motion.button
               onClick={() => setPage('menu')}

@@ -3,6 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../../context/CartContext';
 import { Check } from 'lucide-react';
 
+const formatPrice = (price) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(price);
+};
+
 const ProductCard = ({ product, onImageClick, onProductSelect = () => {} }) => {
   const { addToCart } = useCart();
   const [isAdded, setIsAdded] = useState(false);
@@ -20,17 +27,17 @@ const ProductCard = ({ product, onImageClick, onProductSelect = () => {} }) => {
   };
 
   const priceDisplay = useMemo(() => {
-    // Para produtos por peso com opções de sabor
+    if (!product) return 'Preço indisponível';
+
     if (product.type === 'by_weight' && product.options?.length > 0) {
       const minPrice = Math.min(...product.options.map(opt => opt.pricePerKg));
-      return `A partir de R$ ${minPrice.toFixed(2)}/kg`;
+      return `${formatPrice(minPrice)}/kg`;
     }
-    // --- CORREÇÃO: Adicionada verificação de segurança ---
-    // Para produtos com preço fixo, primeiro verificamos se a propriedade 'price' existe e é um número.
+    
     if (typeof product.price === 'number') {
-      return `R$ ${product.price.toFixed(2)}`;
+      return formatPrice(product.price);
     }
-    // Se nenhum dos casos acima for atendido, exibe uma mensagem de fallback.
+    
     return 'Preço sob consulta';
   }, [product]);
 
@@ -43,10 +50,11 @@ const ProductCard = ({ product, onImageClick, onProductSelect = () => {} }) => {
     >
       <div className="relative h-56 overflow-hidden">
         <motion.img
-          src={product.imageUrl}
+          src={product.imageurl}
           alt={product.name}
           className="w-full h-full object-cover cursor-pointer"
-          onClick={() => onImageClick(product.imageUrl)}
+          // --- LINHA FINAL CORRIGIDA ---
+          onTap={() => onImageClick(product.imageurl)}
           style={{ cursor: 'zoom-in' }}
           whileHover={{ scale: 1.1 }}
           transition={{ type: 'tween', duration: 0.3, ease: 'easeInOut' }}

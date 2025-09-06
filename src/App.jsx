@@ -64,11 +64,11 @@ function App() {
       case 'home':
         return <HomePage setPage={setPage} />;
       case 'menu':
-        return <MenuPage />;
+        return <MenuPage setPage={setPage}/>;
       case 'about':
-        return <AboutPage />;
+        return <AboutPage setPage={setPage}/>;
       case 'checkout':
-        return <CheckoutPage />;
+        return <CheckoutPage setPage={setPage} />;
       default:
         return <HomePage setPage={setPage} />;
     }

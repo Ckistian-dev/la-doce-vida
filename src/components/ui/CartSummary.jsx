@@ -1,18 +1,28 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Plus, Minus, Trash2 } from 'lucide-react';
+import { ShoppingCart, Plus, Minus, Trash2, BookOpen } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 
-const CartSummary = () => {
-  const { cart, incrementQuantity, decrementQuantity, removeFromCart } = useCart();
+// Este componente já está correto, nenhuma alteração é necessária para as imagens.
+const CartSummary = ({ setPage }) => { 
+  const { cart, incrementQuantity, decrementQuantity, removeFromCart, formatPrice } = useCart();
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   if (cart.length === 0) {
     return (
-      <div className="p-8 bg-white rounded-lg shadow-xl text-center">
+      <div className="p-8 bg-white rounded-lg shadow-xl text-center flex flex-col items-center">
         <ShoppingCart size={48} className="mx-auto text-gray-300 mb-4"/>
         <h2 className="text-2xl font-serif text-brand-brown mb-2">Seu carrinho está vazio</h2>
-        <p className="text-gray-500">Adicione alguns doces para começar!</p>
+        <p className="text-gray-500 mb-6">Adicione alguns doces para começar!</p>
+        <motion.button
+          onClick={() => setPage('menu')}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="flex items-center justify-center bg-brand-pink text-white font-bold py-2 px-6 rounded-full text-lg shadow-lg hover:bg-brand-brown transition-colors duration-300"
+        >
+          <BookOpen size={20} className="mr-2" />
+          Ver Cardápio
+        </motion.button>
       </div>
     );
   }
@@ -32,10 +42,11 @@ const CartSummary = () => {
               className="flex items-center justify-between"
             >
               <div className="flex items-center space-x-4">
-                <img src={item.imageUrl} alt={item.name} className="w-16 h-16 object-cover rounded-md shadow-sm" />
+                {/* A imagem aqui apenas exibe o item.imageUrl, que já vem correto do useProducts */}
+                <img src={item.imageurl} alt={item.name} className="w-16 h-16 object-cover rounded-md shadow-sm" />
                 <div>
                   <p className="font-bold text-brand-brown">{item.name}</p>
-                  <p className="text-sm text-gray-500">R$ {item.price.toFixed(2)}</p>
+                  <p className="text-sm text-gray-500">{formatPrice(item.price)}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
@@ -53,7 +64,7 @@ const CartSummary = () => {
         </AnimatePresence>
       </div>
       <div className="mt-6 pt-4 border-t text-right">
-        <p className="text-lg">Subtotal: <span className="font-bold text-xl text-brand-brown">R$ {subtotal.toFixed(2)}</span></p>
+        <p className="text-lg">Subtotal: <span className="font-bold text-xl text-brand-brown">{formatPrice(subtotal)}</span></p>
         <p className="text-sm text-gray-500">Taxas e entrega calculadas na finalização.</p>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import CheckoutForm from '../components/ui/CheckoutForm';
 import CartSummary from '../components/ui/CartSummary';
 
-const CheckoutPage = () => {
+const CheckoutPage = ({ setPage }) => {
   // Efeito para rolar para o topo sempre que a página carregar
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -14,7 +14,7 @@ const CheckoutPage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
 
         <div className="lg:col-span-2">
-          <CartSummary />
+          <CartSummary setPage={setPage} />
         </div>
         <div className="lg:col-span-3">
           <CheckoutForm />

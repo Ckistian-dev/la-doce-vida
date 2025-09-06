@@ -3,21 +3,29 @@ import React, { createContext, useReducer, useEffect, useContext } from 'react';
 // O contexto é exportado para ser usado em outros arquivos.
 export const CartContext = createContext();
 
+// --- 1. ADICIONE A FUNÇÃO DE FORMATAÇÃO AQUI ---
+// Esta função ficará disponível para ser usada pelo Provider.
+const formatPrice = (price) => {
+  if (typeof price !== 'number' || isNaN(price)) {
+    return "R$ 0,00"; // Retorna um valor padrão seguro
+  }
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(price);
+};
+
 const cartReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TO_CART': {
-      // Lógica atualizada para lidar com diferentes tipos de produtos.
-      // Se o produto for 'simple', verificamos se ele já existe para incrementar a quantidade.
       if (action.payload.type === 'simple') {
-          const existingItemIndex = state.findIndex(item => item.id === action.payload.id);
-          if (existingItemIndex > -1) {
-            return state.map(item =>
-              item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item
-            );
-          }
+        const existingItemIndex = state.findIndex(item => item.id === action.payload.id);
+        if (existingItemIndex > -1) {
+          return state.map(item =>
+            item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item
+          );
+        }
       }
-      // Para produtos customizados (com variações ou por peso), sempre adicionamos como um novo item no carrinho,
-      // pois eles podem ter nomes e preços diferentes.
       return [...state, { ...action.payload, quantity: 1 }];
     }
     case 'REMOVE_FROM_CART': {
@@ -65,8 +73,19 @@ export const CartProvider = ({ children }) => {
   const decrementQuantity = (id) => dispatch({ type: 'DECREMENT_QUANTITY', payload: { id } });
   const clearCart = () => dispatch({ type: 'CLEAR_CART' });
 
+  // O objeto que será compartilhado via contexto
+  const contextValue = {
+    cart,
+    addToCart,
+    removeFromCart,
+    incrementQuantity,
+    decrementQuantity,
+    clearCart,
+    formatPrice // <-- 2. ADICIONE A FUNÇÃO AO OBJETO DE VALOR
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, incrementQuantity, decrementQuantity, clearCart }}>
+    <CartContext.Provider value={contextValue}>
       {children}
     </CartContext.Provider>
   );
