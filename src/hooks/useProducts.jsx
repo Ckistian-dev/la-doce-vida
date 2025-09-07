@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // --- CONFIGURAÇÕES DA SUA PLANILHA ---
-const SPREADSHEET_ID = '1cJXc3Z8E_Hy2yNbdSCulRriIC0Pty9OkCr9ifPDGrm0';
+const SPREADSHEET_ID = '1kPeiPchtQgm-6KkbfOmWjmGko3Ylp-9nh3vL1rKhT7o';
 const SHEET_NAME = 'Produtos';
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY; // Para Vite
 // const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY; // Para Create React App
